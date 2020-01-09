@@ -38,6 +38,8 @@ kind: Pod
 metadata:
   name: awscli
   namespace: awscli
+  labels:
+    app: awscli
 spec:
   serviceAccountName: awscli
   containers:
