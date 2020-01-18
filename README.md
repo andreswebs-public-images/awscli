@@ -1,6 +1,6 @@
 # awscli-docker
 
-An awscli docker image for k8s deployment
+An [awscli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) docker image for k8s deployment
 
 ## Running locally
 
