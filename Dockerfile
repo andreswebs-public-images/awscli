@@ -5,7 +5,7 @@ FROM alpine:3.12
 ENV PYTHONUNBUFFERED=1
 
 RUN echo "**** install tools ****" && \
-  apk add --no-cache bash curl jq tmux vim && \
+  apk add --no-cache bash curl jq tmux vim gettext && \
   \
   echo "**** install Python ****" && \
   apk add --no-cache python3 && \
