@@ -4,6 +4,15 @@ FROM alpine:3.12
 # See: https://github.com/Docker-Hub-frolvlad/docker-alpine-python3/pull/13
 ENV PYTHONUNBUFFERED=1
 
+RUN \
+  addgroup -g 65333 awscli && \
+  adduser \
+    -u 65333 \
+    -G awscli \
+    -h /awscli \
+    -D \
+    awscli
+
 RUN echo "**** install tools ****" && \
   apk add --no-cache bash curl jq tmux vim gettext && \
   \
@@ -29,7 +38,9 @@ ENV  \
   HOST_IP="0.0.0.0" \
   PS1="\e[1m\e[31m[\$HOST_IP] \e[34m\u@\h\e[35m \w\e[0m\n$ "
 
-WORKDIR /root
+WORKDIR /awscli
+
+USER awscli
 
 CMD ["/bin/bash", "-l"]
 
