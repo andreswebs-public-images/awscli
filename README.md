@@ -16,12 +16,23 @@ aws_access_key_id=AKIAIOSFODNN7EXAMPLE
 aws_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ```
 
+**Note:** 
+
+The UID and GID in the image are set to 1000. If your UID and GID are different and you want to mount your credentials file as a volume in the container, you need to rebuild the image passing your correct values as build arguments. 
+
+Example:
+
+``` sh
+docker build --tag yourname/awscli --build-arg PUID=1001 --build-arg PGID=1001 .
+```
+
 ### Run the container:
 
 To run the container with your AWS credentials locally:
 
-`docker run --rm -it -v ${HOME}/.aws/credentials:/root/.aws/credentials:ro --name awscli andreswebs/awscli:latest`
-
+``` sh
+docker run --rm -it -v ${HOME}/.aws/credentials:/awscli/.aws/credentials:ro --name awscli andreswebs/awscli:latest
+```
 
 ## Running on kubernetes
 
@@ -31,16 +42,20 @@ You need a working k8s cluster and `kubectl` configured.
 
 ### Deploy the objects:
 
-`kubectl apply -f awscli.yml`
+``` sh
+kubectl apply -f awscli.yml
+```
 
 ### Attach to the pod:
 
-`kubectl attach --namespace=awscli -ti awscli`
+``` sh
+kubectl attach --namespace awscli -ti awscli
+```
 
 
 ## Authors
 
-**Andre Silva**
+**Andre Silva** [andreswebs](https://github.com/andreswebs)
 
 
 ## License

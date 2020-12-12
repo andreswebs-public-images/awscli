@@ -25,9 +25,23 @@ RUN echo "**** install tools ****" && \
   sed -i "s/export PS1=/#export PS1=/" /etc/profile && \
   echo trap exit TERM > /etc/profile.d/trapterm.sh
 
+ARG PUID=1000
+ARG PGID=1000
+
+RUN \
+  addgroup -g "${PGID}" awscli && \
+  adduser \
+    -u "${PUID}" \
+    -G awscli \
+    -h /awscli \
+    -D \
+    awscli
+
 ENV  \
   PS1="\e[34m\u@\h\e[35m \w\e[0m\n$ "
 
-WORKDIR /root
+WORKDIR /awscli
+
+USER awscli
 
 CMD ["/bin/bash", "-l"]
