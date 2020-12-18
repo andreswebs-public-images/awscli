@@ -44,12 +44,14 @@ spec:
   serviceAccountName: awscli
   securityContext:
     runAsNonRoot: true
-    supplementalGroups: 10001
+    supplementalGroups: [ 10001] 
     fsGroup: 10001
   containers:
     - name: awscli
       image: andreswebs/awscli
       imagePullPolicy: Always
+      securityContext:
+        runAsUser: 1000
       stdin: true
       tty: true
       env:

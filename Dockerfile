@@ -26,7 +26,7 @@ RUN echo "**** install tools ****" && \
   echo trap exit TERM > /etc/profile.d/trapterm.sh
 
 ENV  \
-  HOSTIP="0.0.0.0" \
+  HOST_IP="0.0.0.0" \
   PS1="\e[1m\e[31m[\$HOSTIP] \e[34m\u@\h\e[35m \w\e[0m\n$ "
 
 ARG PUID=1000
