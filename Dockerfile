@@ -28,22 +28,20 @@ RUN echo "**** install tools ****" && \
 ENV  \
   PS1="\e[34m\u@\h\e[35m \w\e[0m\n$ "
 
-# ARG PUID=1000
-# ARG PGID=1000
+ARG PUID=1000
+ARG PGID=1000
 
-# RUN \
-#   addgroup -g "${PGID}" awscli && \
-#   adduser \
-#     -u "${PUID}" \
-#     -G awscli \
-#     -h /awscli \
-#     -D \
-#     awscli
+RUN \
+  addgroup -g "${PGID}" awscli && \
+  adduser \
+    -u "${PUID}" \
+    -G awscli \
+    -h /awscli \
+    -D \
+    awscli
 
-# WORKDIR /awscli
+WORKDIR /awscli
 
-# USER awscli
-
-WORKDIR /root
+USER awscli
 
 CMD ["/bin/bash", "-l"]
