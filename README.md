@@ -6,23 +6,23 @@ An [awscli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.ht
 
 ### Prerequisites:
 
-Set up your [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) in the `~/.aws/credentials` file. 
+Set up your [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) in the `~/.aws/credentials` file.
 
 Example contents:
 
-```
+```ini
 [default]
 aws_access_key_id=AKIAIOSFODNN7EXAMPLE
 aws_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ```
 
-**Note:** 
+**Note:**
 
-The UID and GID in the image are set to 1000. If your UID and GID are different and you want to mount your credentials file as a volume in the container, you need to rebuild the image passing your correct values as build arguments. 
+The UID and GID in the image are set to 1000. If your UID and GID are different and you want to mount your credentials file as a volume in the container, you need to rebuild the image passing your correct values as build arguments.
 
 Example:
 
-``` sh
+```sh
 docker build --tag yourname/awscli --build-arg PUID=1001 --build-arg PGID=1001 .
 ```
 
@@ -30,7 +30,7 @@ docker build --tag yourname/awscli --build-arg PUID=1001 --build-arg PGID=1001 .
 
 To run the container with your AWS credentials locally:
 
-``` sh
+```sh
 docker run --rm -it -v ${HOME}/.aws/credentials:/awscli/.aws/credentials:ro --name awscli andreswebs/awscli:latest
 ```
 
