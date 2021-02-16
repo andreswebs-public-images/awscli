@@ -4,7 +4,8 @@ FROM alpine:3.13
 # See: https://github.com/Docker-Hub-frolvlad/docker-alpine-python3/pull/13
 ENV PYTHONUNBUFFERED=1
 
-RUN echo "**** install tools ****" && \
+RUN \
+  echo "**** install tools ****" && \
   apk add --no-cache bash curl jq tmux vim gettext && \
   \
   echo "**** install Python ****" && \
